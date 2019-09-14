@@ -1,0 +1,31 @@
+{
+  "name": "goosenet-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hack-The-Loo-2019/goosenet-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hack-The-Loo-2019/goosenet-backend/issues"
+  },
+  "homepage": "https://github.com/Hack-The-Loo-2019/goosenet-backend#readme",
+  "dependencies": {
+    "app-root-path": "^2.2.1",
+    "express": "^4.17.1",
+    "express-request-id": "^1.4.1",
+    "firebase-admin": "^8.5.0",
+    "winston": "^3.2.1",
+    "body-parser": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
