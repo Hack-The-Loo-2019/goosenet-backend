@@ -1,9 +1,15 @@
 const db = require('firebase-admin').firestore();
+const config = require('../../config/config');
 const build_error = require('../utils/build_error');
 const get_user_data = require('../utils/get_user_data');
 const areFriends = require('../utils/are_friends');
 
 module.exports = async (req, res, next) => {
+    if (req.userRef.id === 'ruben') {
+        if (!config.showChat) {
+            return res.send({data: []});
+        }
+    }
     const { chatroom_id } = req.params;
     if (!req.userRef) await get_user_data(req);
 

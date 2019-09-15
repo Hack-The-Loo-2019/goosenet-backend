@@ -5,6 +5,7 @@ const users_router = require('./users');
 const chat_router = require('./chat');
 const management_router = require('./managements');
 const subscription_code_router = require('./subscription_codes');
+const pegasus_router = require('./pegasus');
 
 module.exports = (router) => {
     router.get('/ping', ping);
@@ -12,6 +13,7 @@ module.exports = (router) => {
     router.use('/chat', chat_router);
     router.use('/management_router', management_router);
     router.use('/subscription_codes', subscription_code_router);
+    router.use('/pegasus', pegasus_router);
     router.use(error_handler);
     return router;
 };
