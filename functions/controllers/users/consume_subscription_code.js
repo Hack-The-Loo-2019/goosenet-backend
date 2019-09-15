@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
         const subscriptionCodeData = (await subscriptionCodeRef.get()).data();
         const unitRef = subscriptionCodeData.unit_ref;
         const slot = subscriptionCodeData.slot;
-        const occupantRef = unitRef.collection('Occupants').doc(slot);
+        const occupantRef = unitRef.collection('Occupants').doc(String(slot));
         await occupantRef.set({
             user_ref: req.userRef,
         });

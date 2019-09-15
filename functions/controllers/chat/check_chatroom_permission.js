@@ -14,8 +14,14 @@ module.exports = async (req, res, next) => {
         const unitSnapsPromises = unitsSnaps.map(async snapshot => {
             if (chatroomPermission) return;
             const unitRef = unitsRef.doc(snapshot.id);
-            const occupantRef = unitRef.doc(req.userRef.id);
-            if ((await occupantRef.get()).exists) chatroomPermission = true;
+            const occupantsRef = unitRef.collection('Occupants');
+            const occupantsSnaps = (await occupantsRef.get()).docs;
+            const occupantsSnapsPromises = occupantsSnaps.map(async snapshot => {
+                if (snapshot.id === req.userRef.id) {
+                    chatroomPermission = true;
+                }
+            });
+            await Promise.all(occupantsSnapsPromises);
         });
         await Promise.all(unitSnapsPromises);
     } else if ((await memberRef.get()).exists) {
