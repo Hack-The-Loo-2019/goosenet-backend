@@ -11,7 +11,7 @@ module.exports = (router) => {
     router.use('/users', users_router);
     router.use('/chat', chat_router);
     router.use('/management_router', management_router);
-    router.use('/subscription_code', subscription_code_router);
+    router.use('/subscription_codes', subscription_code_router);
     router.use(error_handler);
     return router;
 };

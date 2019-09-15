@@ -5,8 +5,8 @@ const consumeSubscriptionCode = require('../controllers/users/consume_subscripti
 const authenticateUser = require('../controllers/users/authenticate');
 const authenticateManagement = require('../controllers/management/authenticate');
 
-router.put('/', authenticateManagement);
-router.put('/', generateSubscriptionCode);
+router.put('/:building_id/:unit_id', authenticateManagement);
+router.put('/:building_id/:unit_id', generateSubscriptionCode);
 
 router.post('/:subscription_code', authenticateUser);
 router.post('/:subscription_code', consumeSubscriptionCode);
