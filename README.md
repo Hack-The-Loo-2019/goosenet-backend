@@ -43,9 +43,21 @@
         - `fake_ref (@ref Users.Fakes)`
         - `timestamp (date)`
 
-### Buildings Collection
+### Managements Collection
 - `id (string)`
-- `address (string)`
-- `Units (collection)`:
-    - `name (string)`
-    - `user_ref (@ref Users)`
+- `name (string)`
+- `Buildings (collection)`:
+   - `id (string)`
+   - `name (string)`
+   - `address (string)`
+   - `Units (collection)`:
+       - `name (string)`
+       - `Occupants (collection)`:
+           - `id (string)`
+           - `user_ref (@ref Users)`
+    
+### Subscription Codes Collection
+- `id (string)`
+- `management_ref (@ref Managements)`
+- `slot (integer)`
+- `unit_ref (@ref Buildings.Units)`
