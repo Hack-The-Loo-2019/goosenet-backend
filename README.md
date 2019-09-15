@@ -5,42 +5,44 @@
 - `id (string)`
 - `name (string)`
 - `email (string)`
+- `avatar (string)`
 - `Friends (collection)`:
     - `id (string)`
 - `Fakes (collection)`:
     - `name (string)`
-    - `avatar (string)`
+    - `created_at (date)`
     
 ### Messages Collection
 - `id (string)`
 - `message (string)`
-- `chatroom_ref (Chatrooms.id)`
-- `user_ref (Users.id)`
-- `message_ref (Messages.id)`: If null, this message is of depth 0. If not null, this message is of depth 1 (a reply).
+- `chatroom_ref (@ref Chatrooms)`
+- `user_ref (@ref Users)`
+- `fake_ref (@ref Users.Fakes)`
+- `message_ref (@ref Messages)`: If null, this message is of depth 0. If not null, this message is of depth 1 (a reply).
 - `timestamp (date)`
 
 ### Announcements Collection
 - `id (string)`
 - `title (string)`
 - `content (string)`
-- `user_ref (Users.id)`
-- `chatroom_ref (Chatrooms.id)`
+- `user_ref (@ref Users)`
+- `chatroom_ref (@ref Chatrooms.)`
 - `timestamp (date)`
 - `Replies (collection)`:
     - `id (string)`
     - `message (string)`
-    - `user_ref (Users.id)`
+    - `user_ref (@ref Users)`
     - `timestamp (date)`
 
 ### Chatrooms Collection
 - `id (string)`
-- `unit_refs ([Buildings.Units.id])`
-- `building_refs ([Buildings.id])`
-- `user_refs ([Users.id])`
+- `unit_refs ([@ref Buildings.Units])`
+- `building_refs ([@ref Buildings])`
+- `user_refs ([@ref Users])`
 
 ### Buildings Collection
 - `id (string)`
 - `address (string)`
 - `Units (collection)`:
     - `name (string)`
-    - `user_ref (Users.id)`
+    - `user_ref (@ref Users)`
