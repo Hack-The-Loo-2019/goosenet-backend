@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
         const data = {};
         data.id = snapshot.id;
         const rawData = snapshot.data();
-        const showFake = rawData.user_ref.id === req.userRef.id || !areFriends(req, rawData.user_ref.id);
+        const showFake = rawData.user_ref.id !== req.userRef.id && !await areFriends(req, rawData.user_ref.id);
 
         if (showFake) {
             const fakeSnapshot = await rawData.fake_ref.get();
@@ -43,8 +43,7 @@ module.exports = async (req, res, next) => {
             const newReplyData = {};
             newReplyData.id = snapshot.id;
             const rawData = snapshot.data();
-            const showFake = rawData.user_ref.id === req.userRef.id || !areFriends(req, rawData.user_ref.id);
-
+            const showFake = rawData.user_ref.id !== req.userRef.id && !await areFriends(req, rawData.user_ref.id);
             if (showFake) {
                 const fakeSnapshot = await rawData.fake_ref.get();
                 const fakeData = fakeSnapshot.data();
