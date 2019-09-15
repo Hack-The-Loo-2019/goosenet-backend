@@ -13,17 +13,7 @@
     - `created_at (date)`
 
 ### Announcements Collection
-- `id (string)`
-- `title (string)`
-- `content (string)`
-- `user_ref (@ref Users)`
-- `chatroom_ref (@ref Chatrooms.)`
-- `timestamp (date)`
-- `Replies (collection)`:
-    - `id (string)`
-    - `message (string)`
-    - `user_ref (@ref Users)`
-    - `timestamp (date)`
+
 
 ### Chatrooms Collection
 - `id (string)`
@@ -36,6 +26,19 @@
 - `Messages (collection)`:
     - `id (string)`
     - `message (string)`
+    - `user_ref (@ref Users)`
+    - `fake_ref (@ref Users.Fakes)`
+    - `timestamp (date)`
+    - `Replies (collection)`:
+        - `id (string)`
+        - `message (string)`
+        - `user_ref (@ref Users)`
+        - `fake_ref (@ref Users.Fakes)`
+        - `timestamp (date)`
+- `Announcements (collection)`:
+    - `id (string)`
+    - `title (string)`
+    - `content (string)`
     - `user_ref (@ref Users)`
     - `fake_ref (@ref Users.Fakes)`
     - `timestamp (date)`
