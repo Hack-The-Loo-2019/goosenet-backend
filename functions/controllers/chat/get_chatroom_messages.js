@@ -7,11 +7,11 @@ module.exports = async (req, res, next) => {
     if (!req.userRef) await get_user_data(req);
 
     const chatroomRef = db.collection('Chatrooms').doc(chatroom_id);
-    const messageRefs = db.collection('Messages')
-        .where('chatroom_ref', '==', chatroomRef)
-        .orderBy('timestamp', 'desc');
-
-    const messageDatas = (await messageRefs.get()).map(snapshot => snapshot.data());
-
+    const messageRefs = chatroomRef.collection('Messages').orderBy('timestamp', 'desc');
+    console.log('hey')
+    const messageSnaps = (await messageRefs.get()).docs
+    console.log('huhh')
+    const messageDatas = messageSnaps.map(snapshot => snapshot.data());
+    console.log('henloo')
     res.status(200).send({ data: messageDatas });
 };
