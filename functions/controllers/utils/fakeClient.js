@@ -22,7 +22,7 @@ const fakeClient = () => {
 
     const name = `${adjective} ${animal}`
   
-    return { name }
+    return { name, created_at: new Date() }
 }
 
 module.exports = fakeClient
