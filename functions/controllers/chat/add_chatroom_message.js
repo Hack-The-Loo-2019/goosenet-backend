@@ -9,7 +9,6 @@ module.exports = async (req, res, next) => {
     if (!req.userRef) await get_user_data(req);
     const data = {
         message,
-        message_ref: message_id ? db.collection('Messages').doc(message_id) : null,
         user_ref: req.userRef,
         timestamp: new Date(),
     };
@@ -40,12 +39,16 @@ module.exports = async (req, res, next) => {
     }
 
     try {
-        console.log('insert goddamn');
-        await db
-            .collection('Chatrooms')
-            .doc(chatroom_id)
-            .collection('Messages')
-            .add(data);
+        const chatroomRef = db.collection('Chatrooms').doc(chatroom_id);
+        const messageRef = message_id ? chatroomRef.collection('Messages').doc(message_id) : null;
+        if (messageRef) {
+            await messageRef.collection('Replies')
+                .add(data);
+        } else {
+            await chatroomRef
+                .collection('Messages')
+                .add(data);
+        }
         return res.sendStatus(204);
     } catch (e) {
         console.error(e.stack);

@@ -48,14 +48,14 @@ module.exports = async (req, res, next) => {
             if (showFake) {
                 const fakeSnapshot = await rawData.fake_ref.get();
                 const fakeData = fakeSnapshot.data();
-                data.user = {
+                newReplyData.user = {
                     id: fakeSnapshot.id,
                     name: fakeData.name
                 };
             } else {
                 const userSnapshot = await rawData.user_ref.get();
                 const userData = userSnapshot.data();
-                data.user = {
+                newReplyData.user = {
                     id: rawData.user_ref.id,
                     name: userData.name
                 };
