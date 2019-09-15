@@ -5,6 +5,8 @@
 - `id (string)`
 - `name (string)`
 - `email (string)`
+- `Friends (collection)`:
+    - `id (string)`
 - `Fakes (collection)`:
     - `name (string)`
     - `avatar (string)`
