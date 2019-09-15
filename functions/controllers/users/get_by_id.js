@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
             .collection('Users')
             .doc(req.params.id)
             .get();
-        res.send(doc.data());
+        res.send({ data: doc.data() });
     }
     catch (e) {
         console.log(e.stack);

@@ -10,7 +10,6 @@ module.exports = async (req, res, next) => {
     if (!authHeader) {
         res.status(401).json({ error: `Missing auth header` });
     }
-    console.log(authHeader);
     const doc = await db
         .collection('Users')
         .doc(authHeader)
