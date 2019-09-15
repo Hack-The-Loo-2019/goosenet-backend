@@ -11,15 +11,6 @@
 - `Fakes (collection)`:
     - `name (string)`
     - `created_at (date)`
-    
-### Messages Collection
-- `id (string)`
-- `message (string)`
-- `chatroom_ref (@ref Chatrooms)`
-- `user_ref (@ref Users)`
-- `fake_ref (@ref Users.Fakes)`
-- `message_ref (@ref Messages)`: If null, this message is of depth 0. If not null, this message is of depth 1 (a reply).
-- `timestamp (date)`
 
 ### Announcements Collection
 - `id (string)`
@@ -39,6 +30,18 @@
 - `unit_refs ([@ref Buildings.Units])`
 - `building_refs ([@ref Buildings])`
 - `user_refs ([@ref Users])`
+- `Messages (collection)`:
+    - `id (string)`
+    - `message (string)`
+    - `user_ref (@ref Users)`
+    - `fake_ref (@ref Users.Fakes)`
+    - `timestamp (date)`
+    - `Replies (collection)`:
+        - `id (string)`
+        - `message (string)`
+        - `user_ref (@ref Users)`
+        - `fake_ref (@ref Users.Fakes)`
+        - `timestamp (date)`
 
 ### Buildings Collection
 - `id (string)`

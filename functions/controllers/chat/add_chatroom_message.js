@@ -1,7 +1,7 @@
 const db = require('firebase-admin').firestore();
 const build_error = require('../utils/build_error');
 const get_user_data = require('../utils/get_user_data');
-const fakeClient = require('../utils/fakeClient')
+const fakeClient = require('../utils/fakeClient');
 
 module.exports = async (req, res, next) => {
     const { chatroom_id } = req.params;
@@ -25,22 +25,22 @@ module.exports = async (req, res, next) => {
             .get();
 
         if (fake.docs.length > 0) {
-            const fakeId = fake.docs[0].id
-            data.fake_ref = await req.userRef.collection('Fakes').doc(fakeId)
+            const fakeId = fake.docs[0].id;
+            data.fake_ref = await req.userRef.collection('Fakes').doc(fakeId);
         }
         else {
             const fakeRef = await req.userRef
                 .collection('Fakes')
                 .add(fakeClient());
             data.fake_ref = fakeRef;
-        }  
+        }
     } catch (e) {
         console.error(e.stack);
         return next(build_error(e, 500));
     }
 
     try {
-        console.log('insert goddamn')
+        console.log('insert goddamn');
         await db
             .collection('Chatrooms')
             .doc(chatroom_id)
