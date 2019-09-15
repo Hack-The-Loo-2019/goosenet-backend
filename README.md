@@ -27,9 +27,12 @@
 
 ### Chatrooms Collection
 - `id (string)`
-- `unit_refs ([@ref Buildings.Units])`
-- `building_refs ([@ref Buildings])`
-- `user_refs ([@ref Users])`
+- `Units (collection)`:
+    - `id (string)`
+    - `unit_ref (@ref Managements.Buildings.Units)`
+- `Members (collections)`:
+    - `id (string)`
+    - `member_ref (@ref Users)`
 - `Messages (collection)`:
     - `id (string)`
     - `message (string)`
@@ -53,8 +56,7 @@
    - `Units (collection)`:
        - `name (string)`
        - `Occupants (collection)`:
-           - `id (string)`
-           - `user_ref (@ref Users)`
+           - `id (string)`: Same as user id.
     
 ### Subscription Codes Collection
 - `id (string)`
